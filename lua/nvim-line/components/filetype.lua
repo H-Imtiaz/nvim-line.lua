@@ -1,20 +1,19 @@
 local M = {}
 
 function M.get()
-	local devicons = pcall(require, "nvim-web-devicons")
+	local devicons = require("nvim-web-devicons")
+	local icon, highlight = devicons.get_icon(vim.fn.expand("%:t"))
 
-	if devicons == nil then
-		return ""
+	if icon == nil and highlight == nil then
+		icon, highlight = devicons.get_icon_by_filetype(vim.bo.filetype)
 	end
-
-	local icon, highlight = require("nvim-web-devicons").get_icon_by_filetype(vim.bo.filetype)
 
 	if icon == nil and highlight == nil then
 		icon = ""
 		highlight = "DevIconDefault"
 	end
 
-	return icon
+	return "%#" .. highlight .. "#" .. icon .. " " .. vim.bo.filetype .. "%#NSNormalStatus#"
 end
 
 return M
