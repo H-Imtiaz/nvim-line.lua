@@ -3,22 +3,12 @@ local M = {}
 --- @class NvimLineConfig
 M = {
 	sections = {
-		a = {
-			{ "mode" },
-		},
-		b = {
-			{ "branch" },
-		},
-		c = {
-			{ "diagnostics" },
-		},
+		a = { { "mode" } },
+		b = { { "branch" } },
+		c = { { "diagnostics" } },
 		x = { { "filetype" } },
-		y = {
-			{ "progress" },
-		},
-		z = {
-			{ "location" },
-		},
+		y = { { "progress" } },
+		z = { { "location" } },
 	},
 	separators = {
 		left = "",
