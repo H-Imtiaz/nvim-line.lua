@@ -40,13 +40,32 @@ M.map = {
   ["t"]      = "TERMINAL",
 }
 
----@return string current mode name
-function M.get()
-	local mode_code = vim.api.nvim_get_mode().mode
-	if M.map[mode_code] == nil then
-		return mode_code
+function M:new(opts)
+	local instance = require("nvim-line.component")()
+
+	instance.content = function()
+		local mode_code = vim.api.nvim_get_mode().mode
+
+		if M.map[mode_code] == nil then
+			return mode_code
+		end
+
+		return M.map[mode_code]
 	end
-	return M.map[mode_code]
+
+	instance.format = function(content)
+		return content:sub(1, 1)
+	end
+
+	instance.separator = opts.separator
+	instance.section = opts.section
+	instance.highlight = opts.highlight
+
+	instance.update = function()
+		instance:update_hl()
+	end
+
+	return instance
 end
 
 return M

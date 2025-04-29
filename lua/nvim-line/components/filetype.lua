@@ -1,19 +1,33 @@
 local M = {}
 
-function M.get()
-	local devicons = require("nvim-web-devicons")
-	local icon, highlight = devicons.get_icon(vim.fn.expand("%:t"))
+function M:new(opts)
+	local instance = require("nvim-line.component")()
 
-	if icon == nil and highlight == nil then
-		icon, highlight = devicons.get_icon_by_filetype(vim.bo.filetype)
+	instance.content = function()
+		local devicons = require("nvim-web-devicons")
+		local icon, highlight = devicons.get_icon(vim.fn.expand("%:t"))
+
+		if icon == nil and highlight == nil then
+			icon, highlight = devicons.get_icon_by_filetype(vim.bo.filetype)
+		end
+
+		if icon == nil and highlight == nil then
+			icon = ""
+			highlight = "DevIconDefault"
+		end
+
+		return "%#" .. highlight .. "#" .. icon .. " " .. vim.bo.filetype .. "%#NSNormalStatus#"
 	end
 
-	if icon == nil and highlight == nil then
-		icon = ""
-		highlight = "DevIconDefault"
+	instance.separator = opts.separator
+	instance.section = opts.section
+	instance.highlight = opts.highlight
+
+	instance.update = function()
+		instance:update_hl()
 	end
 
-	return "%#" .. highlight .. "#" .. icon .. " " .. vim.bo.filetype .. "%#NSNormalStatus#"
+	return instance
 end
 
 return M
