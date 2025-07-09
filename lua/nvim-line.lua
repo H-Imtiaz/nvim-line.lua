@@ -3,20 +3,13 @@ local M = {}
 local config = require("nvim-line.config")
 local components = {}
 
-local function refresh(mode) end
-
-P = function(any)
-	print(vim.inspect(any))
-end
-
-Unload = function(name)
-	package.loaded[name] = nil
-end
-
 function M.setup(opts)
 	local map = { a = "a", b = "b", c = "hc", x = "c", y = "b", z = "a" }
 	config = vim.tbl_deep_extend("force", config, opts or {})
 	require("nvim-line.highlight")
+
+	vim.opt.statusline =
+		"%{%g:sectionA()%}%{%g:sectionB()%}%{%g:sectionC()%}%=%{%g:sectionX()%}%{%g:sectionY()%}%{%g:sectionZ()%}"
 
 	for key, value in pairs(config.sections) do
 		if value == nil then
@@ -60,9 +53,6 @@ function M.setup(opts)
 			end
 		end
 	end
-
-	vim.opt.statusline =
-		"%{%g:sectionA()%}%{%g:sectionB()%}%{%g:sectionC()%}%=%{%g:sectionX()%}%{%g:sectionY()%}%{%g:sectionZ()%}"
 end
 
 vim.api.nvim_create_autocmd({
@@ -75,12 +65,7 @@ vim.api.nvim_create_autocmd({
 		for _, component in pairs(components) do
 			component:update()
 		end
-
-		vim.opt.statusline =
-			"%{%g:sectionA()%}%{%g:sectionB()%}%{%g:sectionC()%}%=%{%g:sectionX()%}%{%g:sectionY()%}%{%g:sectionZ()%}"
 	end,
 })
-
--- M.setup({})
 
 return M
