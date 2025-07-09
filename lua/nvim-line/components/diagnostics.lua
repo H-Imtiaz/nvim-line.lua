@@ -50,7 +50,7 @@ function M:new(opts)
 		local diagnostics = require("nvim-line.components.diagnostics")
 		M.count = { 0, 0, 0, 0 }
 
-		for _, diagnostic in ipairs(vim.diagnostic.get(0)) do
+		for _, diagnostic in ipairs(vim.diagnostic.get(nil)) do
 			diagnostics.count[diagnostic.severity] = diagnostics.count[diagnostic.severity] + 1
 		end
 
