@@ -1,64 +1,45 @@
 local function mocha()
 	local color = {
-		rosewater = "#f5e0dc",
-		flamingo = "#f2cdcd",
-		pink = "#f5c2e7",
-		mauve = "#cba6f7",
-		red = "#f38ba8",
-		maroon = "#eba0ac",
-		peach = "#fab387",
-		yellow = "#f9e2af",
-		green = "#a6e3a1",
-		teal = "#94e2d5",
-		sky = "#89dceb",
-		sapphire = "#74c7ec",
-		blue = "#89b4fa",
-		lavender = "#b4befe",
-		text = "#cdd6f4",
-		subtext1 = "#bac2de",
-		subtext0 = "#a6adc8",
-		overlay2 = "#9399b2",
-		overlay1 = "#7f849c",
-		overlay0 = "#6c7086",
-		surface2 = "#585b70",
-		surface1 = "#45475a",
-		surface0 = "#313244",
+		purple = "#9d7cd8",
+		red = "#f7768e",
+		yellow = "#ff9e64",
+		green = "#9ece6a",
+		blue = "#7aa2f7",
+		back = "#313244",
 		base = "#1e1e2e",
-		mantle = "#181825",
-		crust = "#11111b",
 		none = "NONE",
 	}
 	local theme = {}
 
 	theme.normal = {
-		a = { bg = color.blue, fg = color.mantle },
-		b = { bg = color.surface0, fg = color.blue },
+		a = { bg = color.blue, fg = color.base },
+		b = { bg = color.back, fg = color.blue },
 		c = { bg = color.none, fg = color.none },
 	}
 
 	theme.insert = {
 		a = { bg = color.green, fg = color.base },
-		b = { bg = color.surface0, fg = color.green },
+		b = { bg = color.back, fg = color.green },
 	}
 
 	theme.terminal = {
 		a = { bg = color.green, fg = color.base },
-		b = { bg = color.surface0, fg = color.green },
+		b = { bg = color.back, fg = color.green },
 	}
 
 	theme.command = {
-		a = { bg = color.peach, fg = color.base },
-		b = { bg = color.surface0, fg = color.peach },
+		a = { bg = color.yellow, fg = color.base },
+		b = { bg = color.back, fg = color.yellow },
 	}
 
 	theme.visual = {
-		a = { bg = color.mauve, fg = color.base },
-		b = { bg = color.surface0, fg = color.mauve },
+		a = { bg = color.purple, fg = color.base },
+		b = { bg = color.back, fg = color.purple },
 	}
 
 	theme.replace = {
 		a = { bg = color.red, fg = color.base },
-		b = { bg = color.surface0, fg = color.red },
+		b = { bg = color.back, fg = color.red },
 	}
 
 	return theme
