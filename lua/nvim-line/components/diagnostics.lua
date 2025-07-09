@@ -1,10 +1,10 @@
 local M = {
 	count = { 0, 0, 0, 0 },
 	signs = {
-		Error = "󰅚",
-		Warn = "󰀪",
-		Info = "󰋽",
-		Hint = "󰌶",
+		Error = "●",
+		Warn = "●",
+		Info = "●",
+		Hint = "●",
 	},
 }
 
